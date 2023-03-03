@@ -19,7 +19,7 @@ public class FundsTransferService {
     }
 
     @Transactional(rollbackFor = TransferException.class)
-    public Boolean transferMoney(Double amount, String fromAccountId, String toAccountId) throws IllegalAccessException {
+    public Boolean transferMoney(Double amount, String fromAccountId, String toAccountId) {
 
         Boolean deductOk = false;
         Boolean transferOk = false;
@@ -44,9 +44,6 @@ public class FundsTransferService {
 
         return false;
 
-
-
-        
     }
     
 }
