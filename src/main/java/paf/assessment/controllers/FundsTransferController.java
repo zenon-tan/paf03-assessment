@@ -34,7 +34,7 @@ public class FundsTransferController {
     @Autowired
     LogAuditService laSrc;
 
-    @GetMapping("/transfer")
+    @GetMapping("/")
     public String getForm(Model model) {
 
         List<Accounts> accounts = aSrc.getAllAccounts();
@@ -42,7 +42,7 @@ public class FundsTransferController {
         model.addAttribute("accounts", accounts);
         model.addAttribute("transaction", new Transactions());
 
-        return "transfer";
+        return "index";
     }
 
     @PostMapping("/transfer")
@@ -52,7 +52,7 @@ public class FundsTransferController {
         if(result.hasErrors()) {
             List<Accounts> accounts = aSrc.getAllAccounts();
             model.addAttribute("accounts", accounts);
-            return "transfer";
+            return "index";
         }
 
         if(transaction.getFromAccount().equals(transaction.getToAccount()) || transaction.getToAccount().equals(transaction.getFromAccount())) {
@@ -62,7 +62,7 @@ public class FundsTransferController {
             List<Accounts> accounts = aSrc.getAllAccounts();
             model.addAttribute("accounts", accounts);
 
-            return "transfer";
+            return "index";
 
         }
 
@@ -73,7 +73,7 @@ public class FundsTransferController {
             List<Accounts> accounts = aSrc.getAllAccounts();
             model.addAttribute("accounts", accounts);
 
-            return "transfer";
+            return "index";
 
         }
 
@@ -90,7 +90,7 @@ public class FundsTransferController {
             List<Accounts> accounts = aSrc.getAllAccounts();
             model.addAttribute("accounts", accounts);
 
-            return "transfer";
+            return "index";
 
         }
 
