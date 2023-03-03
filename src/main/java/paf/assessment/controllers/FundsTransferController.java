@@ -89,7 +89,7 @@ public class FundsTransferController {
         model.addAttribute("fromName", fromName);
         model.addAttribute("toName", toName);
         model.addAttribute("transaction", transaction);
-        return "test";
+        return "results";
     }
     
 }

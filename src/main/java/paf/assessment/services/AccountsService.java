@@ -24,5 +24,10 @@ public class AccountsService {
 
         return aRepo.getNameFromId(accountId);
     }
+
+    public Boolean checkIfAccountExists(String accountId) {
+
+        return aRepo.checkAccountExists(accountId);
+    }
     
 }

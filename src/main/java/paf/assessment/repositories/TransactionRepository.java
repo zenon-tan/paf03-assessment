@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import paf.assessment.models.Accounts;
 
 @Repository
-public class TransactionRepo {
+public class TransactionRepository {
 
     @Autowired
     JdbcTemplate jdbcTemplate;

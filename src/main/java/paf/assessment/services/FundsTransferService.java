@@ -1,20 +1,17 @@
 package paf.assessment.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import paf.assessment.Exception.TransferException;
-import paf.assessment.models.Accounts;
-import paf.assessment.models.Transactions;
-import paf.assessment.repositories.TransactionRepo;
+import paf.assessment.repositories.TransactionRepository;
 
 @Service
 public class FundsTransferService {
 
     @Autowired
-    TransactionRepo tRepo;
+    TransactionRepository tRepo;
 
     public Boolean checkIfSufficientFunds(Double amount, String fromAccountId) {
 

@@ -2,7 +2,6 @@ package paf.assessment.models;
 
 import java.util.UUID;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,7 +22,7 @@ public class Transactions {
 
     @Min(value = 9, message = "Minimun transfer amount is $10")
     @NotNull(message = "Amount cannot be empty")
-    @DecimalMin(value = "0.00", message = "Amount must have 2 or more decimal places")
+    // @DecimalMin(value = "0.00", message = "Amount must have 2 or more decimal places")
     private Double amount;
 
     private String comments;
