@@ -37,9 +37,7 @@ public class FundsTransferService {
 
         } else if(!deductOk || !transferOk) {
 
-            throw new TransferException("Error transferring funds") {
-            
-            };
+            throw new TransferException("Error transferring funds");
         }
 
         return false;
