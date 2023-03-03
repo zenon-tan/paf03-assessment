@@ -1,4 +1,4 @@
-package paf.assessment.Exception;
+package paf.assessment.exceptions;
 
 public class TransferException extends RuntimeException {
 

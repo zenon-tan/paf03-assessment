@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
-import paf.assessment.Exception.TransferException;
+import paf.assessment.exceptions.TransferException;
 import paf.assessment.models.Accounts;
 import paf.assessment.models.Transactions;
 import paf.assessment.services.AccountsService;
@@ -82,7 +82,7 @@ public class FundsTransferController {
         if(isTransferred) {
 
             laSrc.logTransaction(transaction);
-            
+
         } else if(!isTransferred) {
 
             ObjectError err = new ObjectError("globalError", "Error transferring money");
