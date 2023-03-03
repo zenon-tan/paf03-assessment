@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Funds Transfer</h2>
+    <form action="#" data-th-action="@{/transfer}" method="post" data-th-object="${transaction}">
+
+        <div data-th-if="${#fields.hasAnyErrors()}">
+            <ul>
+                <li data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}" class="error"></li>
+            </ul>
+        </div>
+
+        From Account: <select name="from" data-th-field="*{fromAccount}">
+            <option data-th-each="account : ${accounts}" data-th-value="${account.accountId}" data-th-text="${account.name} + ' (' + ${account.accountId} + ')'"></option>
+        </select>
+        <br>
+
+        To Account: <select name="to" data-th-field="*{toAccount}">
+            <option data-th-each="account : ${accounts}" data-th-value="${account.accountId}" data-th-text="${account.name} + ' (' + ${account.accountId} + ')'"></option>
+        </select>
+        <br>
+
+        Amount: <input type="text" data-th-field="*{amount}">
+        <br>
+
+        Comments: <input type="text" data-th-field="*{comments}">
+        <br>
+
+        <button type="submit">Transfer</button>
+
+        
+
+
+
+    </form>
+    
+</body>
+</html>

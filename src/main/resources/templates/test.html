@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-th-object="${transaction}">
+
+    <h2>Test</h2>
+    Your transfer of $ <span data-th-text="*{amount}"></span> from
+    <p><span data-th-text="${fromName} + ' (' + *{fromAccount} + ')'"></span> to</p>
+    <p data-th-text="${toName} + ' (' + *{toAccount} + ')'"></p>
+    is successful.
+    <p>Transaction id is <span data-th-text="*{transactionId}"></span></p>
+    <div data-th-unless="${#strings.isEmpty(transaction.comments)}">
+
+        Comments:
+        <p data-th-text="*{comments}"></p>
+
+    </div>
+
+    
+</body>
+</html>
