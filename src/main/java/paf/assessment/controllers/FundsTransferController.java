@@ -80,7 +80,18 @@ public class FundsTransferController {
         Boolean isTransferred = tSrc.transferMoney(transaction.getAmount(), transaction.getFromAccount(), transaction.getToAccount());
 
         if(isTransferred) {
+
             laSrc.logTransaction(transaction);
+            
+        } else if(!isTransferred) {
+
+            ObjectError err = new ObjectError("globalError", "Error transferring money");
+            result.addError(err);
+            List<Accounts> accounts = aSrc.getAllAccounts();
+            model.addAttribute("accounts", accounts);
+
+            return "transfer";
+
         }
 
         String fromName = aSrc.getNameFromId(transaction.getFromAccount());
