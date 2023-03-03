@@ -1,6 +1,7 @@
 package paf.assessment.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -37,25 +38,38 @@ public class TransactionRepository {
 
     public Boolean deductFrom(Double amount, String fromAccountId) {
 
-        Accounts fromAccount = jdbcTemplate.queryForObject(SQL_GET_BALANCE, new BeanPropertyRowMapper<>().newInstance(Accounts.class), fromAccountId);
+        try {
 
-        System.out.println(fromAccount.getBalance());
+            Accounts fromAccount = jdbcTemplate.queryForObject(SQL_GET_BALANCE, new BeanPropertyRowMapper<>().newInstance(Accounts.class), fromAccountId);
 
-        Double newBalance = fromAccount.getBalance() - amount;
+            System.out.println(fromAccount.getBalance());
 
-        return jdbcTemplate.update(SQL_UPDATE_BALANCE, newBalance, fromAccountId) > 0;
+            Double newBalance = fromAccount.getBalance() - amount;
+
+            return jdbcTemplate.update(SQL_UPDATE_BALANCE, newBalance, fromAccountId) > 0;
+            
+        } catch (DataAccessException e) {
+            return false;
+        }
 
     }
 
     public Boolean transferTo(Double amount, String toAccountId) {
 
-        Accounts toAccount = jdbcTemplate.queryForObject(SQL_GET_BALANCE, new BeanPropertyRowMapper<>().newInstance(Accounts.class), toAccountId);
+        try {
 
-        System.out.println(toAccount.getBalance());
+            Accounts toAccount = jdbcTemplate.queryForObject(SQL_GET_BALANCE, new BeanPropertyRowMapper<>().newInstance(Accounts.class), toAccountId);
 
-        Double newBalance = toAccount.getBalance() + amount;
+            System.out.println(toAccount.getBalance());
+    
+            Double newBalance = toAccount.getBalance() + amount;
+    
+            return jdbcTemplate.update(SQL_UPDATE_BALANCE, newBalance, toAccountId) > 0;
+            
+        } catch (DataAccessException e) {
+            return false;
+        }
 
-        return jdbcTemplate.update(SQL_UPDATE_BALANCE, newBalance, toAccountId) > 0;
     }
 
     
